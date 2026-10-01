@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAROTHI — Detect, Guide, Support</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" onclick="showPage('home')">
+      <span class="brand-mark">✦</span>
+      <span>SAROTHI</span>
+    </a>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('detect')">Detect</button>
+      <button onclick="showPage('legal')">Legal Aid</button>
+      <button onclick="showPage('evidence')">Evidence</button>
+      <button onclick="showPage('support')">Support</button>
+    </nav>
+    <button class="menu" onclick="toggleNav()">☰</button>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="eyebrow">DETECT • GET GUIDANCE • ACCESS SUPPORT</div>
+        <h1>You don't have to face<br><span>digital abuse alone.</span></h1>
+        <p>SAROTHI is a safety-focused prototype that helps users screen suspicious media, organize evidence, explore legal options and find support.</p>
+        <div class="hero-actions">
+          <button class="primary" onclick="showPage('detect')">Detect suspicious media →</button>
+          <button class="secondary" onclick="showPage('legal')">Explore support</button>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <button class="feature blue" onclick="showPage('detect')"><span>⌕</span><b>Detect Fake Media</b><small>AI-assisted screening</small></button>
+        <button class="feature purple" onclick="showPage('evidence')"><span>▤</span><b>Organize Evidence</b><small>Keep important details together</small></button>
+        <button class="feature green" onclick="showPage('legal')"><span>⚖</span><b>Legal Guidance</b><small>Explore verified resources</small></button>
+        <button class="feature pink" onclick="showPage('support')"><span>♡</span><b>Mental Support</b><small>Find trusted services</small></button>
+      </div>
+
+      <div class="notice">
+        <b>Prototype notice:</b> Media screening is an indicator, not proof that an image or video is fake. Legal and health information should be checked against the linked official sources.
+      </div>
+    </section>
+
+    <section id="detect" class="page">
+      <div class="section-title">
+        <div class="eyebrow">STEP 1–4</div>
+        <h2>Check suspicious media</h2>
+        <p>Upload an image for a demonstration of the SAROTHI screening flow.</p>
+      </div>
+
+      <div class="detect-card">
+        <label class="upload-box" for="mediaInput">
+          <input id="mediaInput" type="file" accept="image/*">
+          <div id="uploadContent">
+            <div class="upload-icon">↑</div>
+            <h3>Upload an image</h3>
+            <p>PNG, JPG or JPEG</p>
+          </div>
+          <img id="preview" alt="Selected image preview">
+        </label>
+
+        <button id="analyzeBtn" class="primary full" onclick="runDemoAnalysis()" disabled>Start AI-assisted screening</button>
+
+        <div id="analysis" class="analysis hidden">
+          <div class="scanner">
+            <div class="scan-line"></div>
+            <img id="analysisImage" alt="">
+          </div>
+          <div id="analysisText"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="legal" class="page">
+      <div class="section-title">
+        <div class="eyebrow">STEP 5</div>
+        <h2>Legal & institutional guidance</h2>
+        <p>These are general resources, not legal advice. Use the official source to confirm current procedures.</p>
+      </div>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="https://nlaso.gov.bd/" target="_blank" rel="noopener">
+          <span class="icon blue-icon">⚖</span>
+          <h3>National Legal Aid Services Organization</h3>
+          <p>Government legal-aid information and services.</p>
+          <b>Open official source →</b>
+        </a>
+
+        <a class="resource-card" href="tel:109">
+          <span class="icon green-icon">☎</span>
+          <h3>Women & Children Helpline — 109</h3>
+          <p>Bangladesh government helpline for violence-related support.</p>
+          <b>Call 109 →</b>
+        </a>
+
+        <a class="resource-card" href="https://db.nlaso.gov.bd/Pages/OnlineApplications.aspx" target="_blank" rel="noopener">
+          <span class="icon purple-icon">▤</span>
+          <h3>Legal Aid Application</h3>
+          <p>Access the official legal-aid application system.</p>
+          <b>Open application →</b>
+        </a>
+      </div>
+
+      <div class="steps-card">
+        <h3>Evidence-to-report checklist</h3>
+        <ol>
+          <li>Keep the original file without editing it.</li>
+          <li>Save the URL/profile/message where it appeared.</li>
+          <li>Record date and time and take relevant screenshots.</li>
+          <li>Keep copies in a secure location.</li>
+          <li>Use verified institutional/legal channels for reporting.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="evidence" class="page">
+      <div class="section-title">
+        <div class="eyebrow">STEP 6</div>
+        <h2>Organize evidence</h2>
+        <p>Create a simple evidence record for your own organization. This demo stores data only in your browser.</p>
+      </div>
+
+      <div class="evidence-layout">
+        <div class="form-card">
+          <label>Incident date
+            <input id="incidentDate" type="date">
+          </label>
+          <label>Source / platform
+            <input id="platform" type="text" placeholder="e.g. Facebook, Messenger">
+          </label>
+          <label>Original link
+            <input id="sourceUrl" type="url" placeholder="https://...">
+          </label>
+          <label>Notes
+            <textarea id="notes" rows="5" placeholder="What happened? Keep factual details."></textarea>
+          </label>
+          <button class="primary" onclick="saveEvidence()">Save evidence record</button>
+          <button class="secondary" onclick="window.print()">Print / Save as PDF</button>
+        </div>
+
+        <div class="record-card">
+          <h3>Current record</h3>
+          <div id="recordOutput" class="record-empty">Nothing saved yet.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="support" class="page">
+      <div class="section-title">
+        <div class="eyebrow">STEP 7–8</div>
+        <h2>Mental & psychosocial support</h2>
+        <p>You deserve support. Connect with trusted services and use the official source for current contact details.</p>
+      </div>
+
+      <div class="support-banner">
+        <div>
+          <span class="heart">♡</span>
+          <h3>You are not alone.</h3>
+          <p>SAROTHI can guide you toward support; it does not replace a mental-health professional.</p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="https://nimh.gov.bd/" target="_blank" rel="noopener">
+          <span class="icon pink-icon">♡</span>
+          <h3>National Institute of Mental Health</h3>
+          <p>Government specialist mental-health service in Bangladesh.</p>
+          <b>Open official source →</b>
+        </a>
+
+        <a class="resource-card" href="https://nimh.gov.bd/contact.php" target="_blank" rel="noopener">
+          <span class="icon blue-icon">☎</span>
+          <h3>NIMH Contact</h3>
+          <p>Official contact information and current service details.</p>
+          <b>View contact details →</b>
+        </a>
+
+        <a class="resource-card" href="https://mowca.gov.bd/" target="_blank" rel="noopener">
+          <span class="icon green-icon">⌂</span>
+          <h3>Ministry of Women & Children Affairs</h3>
+          <p>Government information on support services for women and children.</p>
+          <b>Open official source →</b>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <b>SAROTHI</b> · A safety-focused prototype for detecting, guiding and connecting.
+    <span>© 2026</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
